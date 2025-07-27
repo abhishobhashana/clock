@@ -1,0 +1,61 @@
+@import "./assets/styles/tailwind.css";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 0rem;
+  height: 0rem;
+}
+
+/* ::-webkit-scrollbar-track {
+  background-color: rgb(28, 28, 30);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(67, 67, 74);
+  border-radius: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(108, 108, 108);
+  border-radius: 0.25rem;
+} */
+
+.map-btn:hover > span > svg > path {
+  fill: rgba(242, 242, 242, 1);
+}
+
+.map-btn-dark:hover > span > svg > path {
+  fill: rgba(44, 44, 46, 1);
+}
+
+.map-btn-dark:hover > svg > g > path {
+  stroke: rgba(242, 242, 242, 1);
+}
+
+.leaflet-pane,
+.leaflet-bottom {
+  z-index: 0 !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+}
+
+.leaflet-popup-content {
+  width: auto !important;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}

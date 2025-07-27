@@ -1,0 +1,13 @@
+{
+  "app": "Clock",
+  "noResult": "No suggestions found.",
+  "notFound": "Page Not Found",
+  "notFoundMessage": "The page you're looking for can't be found.",
+  "recents": "Recents",
+  "searchRecents": "Search Results",
+  "noResultFound": "No result found",
+  "more": "More",
+  "clear": "Clear",
+  "cancel": "Cancel",
+  "noLocation": "Please search location to get the time"
+}
