@@ -86,7 +86,7 @@ const ClockSvg = ({ height = 180, width = 180, time }) => {
             textAnchor="middle"
             fontSize="20"
             fontFamily="Inter"
-            fontWeight="bold"
+            fontWeight="600"
             fill="rgb(38, 38, 38)"
           >
             {hour}

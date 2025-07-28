@@ -117,7 +117,7 @@ export default function clockContainer({
               variants={popOutAnimation}
               initial="hidden"
               animate="visible"
-              className="w-full"
+              className="w-full flex justify-center xl:h-full md:h-full"
             >
               <div
                 className={`z-10 w-full flex flex-col gap-6 xl:p-24 md:p-12 sm:p-6 sm:pt-10 sm:pb-0 pb-0 items-center justify-center ${
@@ -138,10 +138,12 @@ export default function clockContainer({
                 {/* Widgets */}
                 <div
                   className="w-full overflow-auto hide-scroll"
-                  style={{ height: widgetContainerHeight }}
+                  style={{
+                    height: isTabScreen ? "auto" : widgetContainerHeight,
+                  }}
                 >
                   <div
-                    className={`w-full h-full grid gap-6 text-secondary dark:text-white ${
+                    className={`w-full h-full grid gap-6 text-light-grey-third ${
                       isMenuOpen
                         ? "sm:grid-cols-1 sm:grid-rows-3 md:grid-cols-1 md:grid-rows-3 xl:grid-cols-3 xl:grid-rows-2"
                         : "sm:grid-cols-1 sm:grid-rows-3 md:grid-cols-3 md:grid-rows-2 xl:grid-cols-3 xl:grid-rows-2"
@@ -157,11 +159,13 @@ export default function clockContainer({
                     >
                       <Box icon={<Clock />} title="TIME">
                         <div className="h-full flex flex-col justify-evenly bg-white/90 dark:bg-dark-bg/90 rounded-b-xl p-4 pt-0">
-                          <span className="text-light-grey-third">
+                          <span className="text-light-grey-second">
                             {zone} {offset}
                           </span>
-                          <span className="text-4xl">{time}</span>
-                          <span className="text-light-grey-third">
+                          <span className="text-4xl text-secondary dark:text-white">
+                            {time}
+                          </span>
+                          <span className="text-light-grey-second">
                             {fullTimeDay}
                           </span>
                         </div>
@@ -177,7 +181,7 @@ export default function clockContainer({
                       } xl:col-span-1 xl:row-span-1 xl:row-start-2`}
                     >
                       <Box icon={<Clock />} title="CLOCK">
-                        <div className="h-full flex flex-col gap-1 bg-white/90 dark:bg-dark-bg/90 rounded-b-xl p-4 pt-0 items-center justify-center">
+                        <div className="xl:h-full md:h-full sm:h-auto flex flex-col gap-1 bg-white/90 dark:bg-dark-bg/90 rounded-b-xl p-4 pt-0 items-center justify-center">
                           <ClockSvg width={180} height={180} time={time} />
                         </div>
                       </Box>
@@ -185,14 +189,14 @@ export default function clockContainer({
 
                     {/* Map */}
                     <div
-                      className={`sm:col-span-1 sm:row-span-1 ${
+                      className={`sm:col-span-1 sm:row-span-1 xl:mt-0 md:mt-0 sm:mt-24 ${
                         isMenuOpen
                           ? "md:col-span-1 md:row-span-1 md:row-start-3"
                           : "md:col-span-2 md:row-span-2 md:col-start-2 md:row-start-1"
                       } xl:col-span-2 xl:row-span-2 xl:col-start-2 xl:row-start-1`}
                     >
                       <Box icon={<MapIcon />} title="MAP">
-                        <div className="h-full flex flex-col gap-1 bg-white/90 dark:bg-dark-bg/90 rounded-b-xl p-4 pt-0">
+                        <div className="xl:h-full md:h-full sm:h-[18rem] flex flex-col gap-1 bg-white/90 dark:bg-dark-bg/90 rounded-b-xl p-4 pt-0">
                           <Maps location={location} mapData={mapData} />
                         </div>
                       </Box>

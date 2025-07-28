@@ -36,10 +36,45 @@ const Maps = ({ location, mapData }) => {
     setCenter(pos);
   }, [location, mapRef?.current]);
 
-  const coords = (mapData?.[0]?.geojson?.coordinates ?? []).map((ring) =>
-    ring.map(([lon, lat]) => [lat, lon])
-  );
+  function createSmallPolygonAroundPoint([lat, lon], size = 0.0001) {
+    return [
+      [lat - size, lon - size],
+      [lat - size, lon + size],
+      [lat + size, lon + size],
+      [lat + size, lon - size],
+      [lat - size, lon - size],
+    ];
+  }
 
+  const geojson = Array.isArray(mapData) ? mapData[0]?.geojson : null;
+
+  let coords = [];
+
+  if (geojson?.type === "Point" && Array.isArray(geojson.coordinates)) {
+    const [lon, lat] = geojson.coordinates;
+    if (typeof lat === "number" && typeof lon === "number") {
+      const smallPolygon = createSmallPolygonAroundPoint([lat, lon]);
+      coords = [smallPolygon];
+    }
+  } else if (
+    geojson?.type === "Polygon" &&
+    Array.isArray(geojson.coordinates)
+  ) {
+    coords = geojson.coordinates.map((ring) =>
+      Array.isArray(ring) ? ring.map(([lon, lat]) => [lat, lon]) : []
+    );
+  } else if (
+    geojson?.type === "MultiPolygon" &&
+    Array.isArray(geojson.coordinates)
+  ) {
+    coords = geojson.coordinates.flatMap((polygon) =>
+      Array.isArray(polygon)
+        ? polygon.map((ring) =>
+            Array.isArray(ring) ? ring.map(([lon, lat]) => [lat, lon]) : []
+          )
+        : []
+    );
+  }
   return (
     <MapContainer
       ref={mapRef}
